@@ -1,44 +1,15 @@
-#キャラの共通のでステータスとしてクラスを定義。情報持たせる
-class Chara
+#スライムの攻撃部分を定義してみる
+#クラス定義しないとaction3.rbでrequireしてここの変数を使えない
+require "./dq_finish_action3_hero.rb"
 
- attr_accessor :name, :hp, :mp, :attack
+class Slime
 
- def initialize(name:, hp:, mp:, attack:)
-  self.name = name
-  self.hp = hp
-  self.mp = mp
-  self.attack = attack
- end
+ attr_accessor :hp
 
-
-#攻撃行動などメソッド化できるか？
-  def chara_attack  #引数で相手を指定すれば使えるか？
-   puts ""
-   puts "#{self.name} の攻撃！"
-
-   sleep(1)
-   num = rand(5)  #クリティカル判定
-
-   if num == 0
-    puts "会心の一撃！"
-    self.attack *= 2
-   else
-    self.attack *= (1 + rand(2..5) / 100)
-    self.attack.floor
-   end
+  def initialize
+   self.hp = rand(10..15)   #スライムのhp
   end
 
-
-  def chara_attack_react  #攻撃を受けて倒れるかどうかの判定、残HPの表示
-   if self.hp > 0
-    puts "#{self.name}のHP：#{self.hp}"
-   else
-    puts "#{self.name}のHP：0"
-    puts <<~EOS
-    #{self.name}は　倒れた
-    EOS
-   end
-  end
 
 
 
